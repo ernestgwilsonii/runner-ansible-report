@@ -41,16 +41,36 @@
 
 
 # Temp debug
-  - name: curl https://github.com/ernestgwilsonii/runner-ansible-report/raw/master/ansiblecmdb.tar --output /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb/ansiblecmdb.tar
-    raw: curl https://github.com/ernestgwilsonii/runner-ansible-report/raw/master/ansiblecmdb.tar --output /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb/ansiblecmdb.tar
+  - name: curl https://raw.githubusercontent.com/ernestgwilsonii/runner-ansible-report/master/ansiblecmdb/__init__.py --output /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb/__init__.py
+    raw: curl https://raw.githubusercontent.com/ernestgwilsonii/runner-ansible-report/master/ansiblecmdb/__init__.py --output /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb/__init__.py
     ignore_errors: yes
 
-  - name: ls -alF /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb
-    raw: ls -alF /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb
+  - name: curl https://raw.githubusercontent.com/ernestgwilsonii/runner-ansible-report/master/ansiblecmdb/__init__.pyc --output /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb/__init__.pyc
+    raw: curl https://raw.githubusercontent.com/ernestgwilsonii/runner-ansible-report/master/ansiblecmdb/__init__.pyc --output /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb/__init__.pyc
     ignore_errors: yes
 
-  - name: cd /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb && tar xvf ansiblecmdb.tar
-    raw: cd /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb && tar xvf ansiblecmdb.tar
+  - name: curl https://raw.githubusercontent.com/ernestgwilsonii/runner-ansible-report/master/ansiblecmdb/ansible.py --output /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb/ansible.py
+    raw: curl https://raw.githubusercontent.com/ernestgwilsonii/runner-ansible-report/master/ansiblecmdb/ansible.py --output /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb/ansible.py
+    ignore_errors: yes
+
+  - name: curl https://raw.githubusercontent.com/ernestgwilsonii/runner-ansible-report/master/ansiblecmdb/ansible.pyc --output /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb/ansible.pyc
+    raw: curl https://raw.githubusercontent.com/ernestgwilsonii/runner-ansible-report/master/ansiblecmdb/ansible.pyc --output /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb/ansible.pyc
+    ignore_errors: yes
+
+  - name: curl https://raw.githubusercontent.com/ernestgwilsonii/runner-ansible-report/master/ansiblecmdb/parser.py --output /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb/parser.py
+    raw: curl https://raw.githubusercontent.com/ernestgwilsonii/runner-ansible-report/master/ansiblecmdb/parser.py --output /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb/parser.py
+    ignore_errors: yes
+
+  - name: curl https://raw.githubusercontent.com/ernestgwilsonii/runner-ansible-report/master/ansiblecmdb/parser.pyc --output /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb/parser.pyc
+    raw: curl https://raw.githubusercontent.com/ernestgwilsonii/runner-ansible-report/master/ansiblecmdb/parser.pyc --output /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb/parser.pyc
+    ignore_errors: yes
+
+  - name: curl https://raw.githubusercontent.com/ernestgwilsonii/runner-ansible-report/master/ansiblecmdb/util.py --output /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb/util.py
+    raw: curl https://raw.githubusercontent.com/ernestgwilsonii/runner-ansible-report/master/ansiblecmdb/util.py --output /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb/util.py
+    ignore_errors: yes
+
+  - name: curl https://raw.githubusercontent.com/ernestgwilsonii/runner-ansible-report/master/ansiblecmdb/util.pyc --output /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb/util.pyc
+    raw: curl https://raw.githubusercontent.com/ernestgwilsonii/runner-ansible-report/master/ansiblecmdb/util.pyc --output /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb/util.pyc
     ignore_errors: yes
 
   - name: chown -R runner:runer /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb
@@ -60,6 +80,7 @@
   - name: ls -alF /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb
     raw: ls -alF /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb
     ignore_errors: yes
+
 
 # unarchive - Unpacks an archive after (optionally) copying it from the local machine
 # REF: http://docs.ansible.com/ansible/unarchive_module.html
