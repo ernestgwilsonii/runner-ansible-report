@@ -41,16 +41,16 @@
 
 
 # Temp debug
-  - name: curl https://github.com/ernestgwilsonii/runner-ansible-report/raw/master/ansiblecmdb.tar.gz --output /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb/ansiblecmdb.tar.gz
-    raw: curl https://github.com/ernestgwilsonii/runner-ansible-report/raw/master/ansiblecmdb.tar.gz --output /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb/ansiblecmdb.tar.gz
+  - name: curl https://github.com/ernestgwilsonii/runner-ansible-report/raw/master/ansiblecmdb.tar --output /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb/ansiblecmdb.tar
+    raw: curl https://github.com/ernestgwilsonii/runner-ansible-report/raw/master/ansiblecmdb.tar --output /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb/ansiblecmdb.tar
     ignore_errors: yes
 
   - name: ls -alF /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb
     raw: ls -alF /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb
     ignore_errors: yes
 
-  - name: cd /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb && tar xvzf ansiblecmdb.tar.gz 
-    raw: cd /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb && tar xvzf ansiblecmdb.tar.gz
+  - name: cd /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb && tar xvf ansiblecmdb.tar
+    raw: cd /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb && tar xvf ansiblecmdb.tar
     ignore_errors: yes
 
   - name: chown -R runner:runer /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb
@@ -67,7 +67,7 @@
 
   # - name: Install ansiblecmdb
   #   unarchive:
-  #     src: https://github.com/ernestgwilsonii/runner-ansible-report/raw/master/ansiblecmdb.tar.gz
+  #     src: https://github.com/ernestgwilsonii/runner-ansible-report/raw/master/ansiblecmdb.tar
   #     dest: /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb
   #     copy: no
 
