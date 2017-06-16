@@ -20,38 +20,19 @@
 
 
 # Temp debug
-  - name: run uname
-    raw: uname -a
-
-  - name: check release
-    raw: cat /etc/*release
-
-  - name: whoami
-    raw: whoami
-    ignore_errors: yes
-
-  - name: env
-    raw: env
-    ignore_errors: yes
-
-  - name: /usr/bin/su --help
-    raw: /usr/bin/su --help
-    ignore_errors: yes
-
-  - name: /usr/bin/sudo --help
-    raw: /usr/bin/sudo --help
-    ignore_errors: yes
+  - name: echo $SHELL
+    raw: echo $SHELL
 
 
 # Install yum packages (listed in alphabetical order)
 # REF: http://docs.ansible.com/ansible/yum_module.html
 ######################################################
 
-  - name: Install mailx via yum
-    yum:
-      name: mailx
-      state: latest
-    ignore_errors: yes
+  # - name: Install mailx via yum
+  #   yum:
+  #     name: mailx
+  #     state: latest
+  #   ignore_errors: yes
 
 
 # Set attributes of files
@@ -70,7 +51,7 @@
 ##########################################################
 
   - name: Install ansible-cmdb https://github.com/fboender/ansible-cmdb
-    command: pip install ansible-cmdb
+    command: pip install --install-option="--prefix=/home/runner/.local/lib/python2.7/site-packages" ansible-cmdb
 
   - name: Generate inventory data
     command: ansible -m setup --tree /tmp/report/ all    
@@ -81,5 +62,5 @@
   - name: Generate CSV Report
     raw: ansible-cmdb -t csv /tmp/report/ > /tmp/report.csv 2>/dev/null
 
-  - name: Email the Reports
-    raw: echo "See attached reports" | mailx -s "Ansible Report" -a /tmp/report.html -a /tmp/report.csv "{{ EMAIL }}"
+  # - name: Email the Reports
+  #   raw: echo "See attached reports" | mailx -s "Ansible Report" -a /tmp/report.html -a /tmp/report.csv "{{ EMAIL }}"
