@@ -19,11 +19,19 @@
   tasks:
 
 
+# Temp debug
+  - name: run uname
+    raw: uname -a
+
+  - name: check release
+    raw: cat /etc/*release
+
+
 # Install yum packages (listed in alphabetical order)
 # REF: http://docs.ansible.com/ansible/yum_module.html
 ######################################################
 
-  - name: Install mailx
+  - name: Install mailx via yum
     yum:
       name: mailx
       state: latest
@@ -34,7 +42,7 @@
 # REF: http://docs.ansible.com/ansible/apk_module.html
 #########################################################
 
-  - name: Install mailx
+  - name: Install mailx via apk
     apk:
       name: mailx
       state: latest
@@ -45,7 +53,7 @@
 # REF: http://docs.ansible.com/ansible/apt_module.html
 #########################################################
 
-  - name: Install mailx
+  - name: Install mailx via apt-get
     apt:
       name: mailx
       state: latest
