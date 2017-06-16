@@ -90,7 +90,7 @@
 ##########################################################
 
   - name: Generate inventory data
-    command: ansible -m setup --tree /tmp/report/ all
+    raw: ansible -m setup --tree /tmp/report/ all
     ignore_errors: yes
 
   - name: ls -alF /tmp/report
@@ -99,6 +99,11 @@
 
   - name: Generate HTML Report
     raw: ansible-cmdb /tmp/report/ > /tmp/report.html 2>/dev/null
+    ignore_errors: yes
+
+  - name: ls -alF /tmp
+    raw: ls -alF /tmp
+    ignore_errors: yes
 
   # - name: Generate CSV Report
   #   raw: ansible-cmdb -t csv /tmp/report/ > /tmp/report.csv 2>/dev/null
