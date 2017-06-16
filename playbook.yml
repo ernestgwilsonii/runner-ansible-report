@@ -19,24 +19,6 @@
   tasks:
 
 
-# Temp debug
-  - name: which tar
-    raw: which tar
-    ignore_errors: yes
-
-  - name: which gzip
-    raw: which gzip
-    ignore_errors: yes
-
-  - name: which wget
-    raw: which wget
-    ignore_errors: yes
-
-  - name: which curl
-    raw: which curl
-    ignore_errors: yes
-
-
 # file - Sets attributes of files and directories
 # http://docs.ansible.com/ansible/file_module.html
 ##################################################
@@ -54,7 +36,30 @@
       path: /tmp/report
       state: directory
       mode: 0755
+      owner: runner
+      group: runner
 
+
+# Temp debug
+  - name: curl https://github.com/ernestgwilsonii/runner-ansible-report/raw/master/ansiblecmdb.tar.gz --output /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb/ansiblecmdb.tar.gz
+    raw: curl https://github.com/ernestgwilsonii/runner-ansible-report/raw/master/ansiblecmdb.tar.gz --output /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb/ansiblecmdb.tar.gz
+    ignore_errors: yes
+
+  - name: ls -alF /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb
+    raw: ls -alF /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb
+    ignore_errors: yes
+
+  - name: cd /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb && tar xvzf ansiblecmdb.tar.gz 
+    raw: cd /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb && tar xvzf ansiblecmdb.tar.gz
+    ignore_errors: yes
+
+  - name: chown -R runner:runer /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb
+    raw: chown -R runner:runer /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb
+    ignore_errors: yes
+
+  - name: ls -alF /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb
+    raw: ls -alF /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb
+    ignore_errors: yes
 
 # unarchive - Unpacks an archive after (optionally) copying it from the local machine
 # REF: http://docs.ansible.com/ansible/unarchive_module.html
