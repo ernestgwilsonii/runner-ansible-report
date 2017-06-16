@@ -44,11 +44,11 @@
 # REF: http://docs.ansible.com/ansible/file_module.html
 #######################################################
 
-  - name: Create directory /tmp/report
-    file:
-      path: /tmp/report
-      state: directory
-      mode: 0755
+  # - name: Create directory /tmp/report
+  #   file:
+  #     path: /tmp/report
+  #     state: directory
+  #     mode: 0755
 
 
 # Execute command(s)
@@ -58,14 +58,14 @@
   - name: Install ansible-cmdb https://github.com/fboender/ansible-cmdb
     command: pip install --install-option="--prefix=/home/runner/.local/lib/python2.7" ansible-cmdb
 
-  - name: Generate inventory data
-    command: ansible -m setup --tree /tmp/report/ all    
+  # - name: Generate inventory data
+  #   command: ansible -m setup --tree /tmp/report/ all    
 
-  - name: Generate HTML Report
-    raw: ansible-cmdb /tmp/report/ > /tmp/report.html 2>/dev/null
+  # - name: Generate HTML Report
+  #   raw: ansible-cmdb /tmp/report/ > /tmp/report.html 2>/dev/null
 
-  - name: Generate CSV Report
-    raw: ansible-cmdb -t csv /tmp/report/ > /tmp/report.csv 2>/dev/null
+  # - name: Generate CSV Report
+  #   raw: ansible-cmdb -t csv /tmp/report/ > /tmp/report.csv 2>/dev/null
 
   # - name: Email the Reports
   #   raw: echo "See attached reports" | mailx -s "Ansible Report" -a /tmp/report.html -a /tmp/report.csv "{{ EMAIL }}"
