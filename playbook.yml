@@ -90,7 +90,7 @@
 ##########################################################
 
   - name: Generate inventory data
-    raw: ansible -m setup --tree /tmp/report/ all
+    raw: /home/runner/.local/bin/ansible -m setup --tree /tmp/report/ all
     ignore_errors: yes
 
   - name: ls -alF /tmp/report
@@ -105,9 +105,9 @@
     raw: ls -alF /tmp
     ignore_errors: yes
 
-  - name: find / | grep ansible
-    raw: find / | grep ansible
-    ignore_errors: yes
+  # - name: find / | grep ansible
+  #   raw: find / | grep ansible
+  #   ignore_errors: yes
 
   # - name: Generate CSV Report
   #   raw: ansible-cmdb -t csv /tmp/report/ > /tmp/report.csv 2>/dev/null
