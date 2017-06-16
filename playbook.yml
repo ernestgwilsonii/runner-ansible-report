@@ -25,54 +25,51 @@
   #   ignore_errors: yes
 
 
+# file - Sets attributes of files and directories
+# http://docs.ansible.com/ansible/file_module.html
+##################################################
+
+  - name: Create directory /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb
+    file:
+      path: /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb
+      state: directory
+      mode: 0755
+      owner: runner
+      group: runner
+
+  - name: Create directory /tmp/report
+    file:
+      path: /tmp/report
+      state: directory
+      mode: 0755
+
+
 # unarchive - Unpacks an archive after (optionally) copying it from the local machine
 # REF: http://docs.ansible.com/ansible/unarchive_module.html
 ############################################################
 
-  - name: Install Go
+  - name: Install ansiblecmdb
     unarchive:
-      src: https://storage.googleapis.com/golang/go1.6.3.linux-amd64.tar.gz
-      dest: /usr/local
+      src: https://github.com/ernestgwilsonii/runner-ansible-report/raw/master/ansiblecmdb.tar.gz
+      dest: /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb
       copy: no
-
-
-# Install yum packages (listed in alphabetical order)
-# REF: http://docs.ansible.com/ansible/yum_module.html
-######################################################
-
-  # - name: Install mailx via yum
-  #   yum:
-  #     name: mailx
-  #     state: latest
-  #   ignore_errors: yes
-
-
-# Set attributes of files
-# REF: http://docs.ansible.com/ansible/file_module.html
-#######################################################
-
-  # - name: Create directory /tmp/report
-  #   file:
-  #     path: /tmp/report
-  #     state: directory
-  #     mode: 0755
 
 
 # Execute command(s)
 # REF: http://docs.ansible.com/ansible/command_module.html
 ##########################################################
 
-  - name: Install ansible-cmdb https://github.com/fboender/ansible-cmdb
-    command: pip install --install-option="--prefix=/home/runner" ansible-cmdb
+  # - name: Install ansible-cmdb https://github.com/fboender/ansible-cmdb
+  #   command: pip install --install-option="--prefix=/home/runner" ansible-cmdb
 
-  # - name: Generate inventory data
-  #   command: ansible -m setup --tree /tmp/report/ all    
+  - name: Generate inventory data
+    command: ansible -m setup --tree /tmp/report/ all    
 
-  # - name: Generate HTML Report
-  #   raw: ansible-cmdb /tmp/report/ > /tmp/report.html 2>/dev/null
+  - name: Generate HTML Report
+    raw: ansible-cmdb /tmp/report/ > /tmp/report.html 2>/dev/null
 
-  # - name: Generate CSV Report
-  #   raw: ansible-cmdb -t csv /tmp/report/ > /tmp/report.csv 2>/dev/null
+  - name: Generate CSV Report
+    raw: ansible-cmdb -t csv /tmp/report/ > /tmp/report.csv 2>/dev/null
 
   # - name: Email the Reports
   #   raw: echo "See attached reports" | mailx -s "Ansible Report" -a /tmp/report.html -a /tmp/report.csv "{{ EMAIL }}"
