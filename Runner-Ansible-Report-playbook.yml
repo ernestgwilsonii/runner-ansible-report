@@ -1,0 +1,83 @@
+---
+
+################################################################################
+#  description: Generate a server report using Ansible
+#  usage: ansible-playbook Runner-Ansible-Report-playbook.yml --extra-vars 'EMAIL=SomeEmail@dot.com'
+#  author: Ernest G. Wilson II <ErnestGWilsonII@gmail.com> (https://github.com/ernestgwilsonii)
+#  license: MIT
+################################################################################
+
+
+# Ansible Playbook options
+# REF: http://docs.ansible.com/ansible/playbooks.html
+#####################################################
+
+- name: Generate a server report
+  hosts: localhost
+  gather_facts: False
+  connection: local
+  tasks:
+
+
+# Install yum packages (listed in alphabetical order)
+# REF: http://docs.ansible.com/ansible/yum_module.html
+######################################################
+
+  - name: Install mailx
+    yum:
+      name: mailx
+      state: latest
+    ignore_errors: yes
+
+
+# Install apk packages (listed in alphabetical order)
+# REF: http://docs.ansible.com/ansible/apk_module.html
+#########################################################
+
+  - name: Install mailx
+    apk:
+      name: mailx
+      state: latest
+    ignore_errors: yes
+
+
+# Install apt-get packages (listed in alphabetical order)
+# REF: http://docs.ansible.com/ansible/apt_module.html
+#########################################################
+
+  - name: Install mailx
+    apt:
+      name: mailx
+      state: latest
+    ignore_errors: yes
+
+
+# Set attributes of files
+# REF: http://docs.ansible.com/ansible/file_module.html
+#######################################################
+
+  - name: Set directory permisions on /opt/chatops
+    file:
+      path: /tmp/report
+      state: directory
+      mode: 0755
+
+
+# Execute command(s)
+# REF: http://docs.ansible.com/ansible/command_module.html
+##########################################################
+
+  - name: Install ansible-cmdb https://github.com/fboender/ansible-cmdb
+    command: pip install ansible-cmdb
+
+  - name: Generate inventory data
+    command: ansible -m setup --tree /tmp/report/ all    
+
+  - name: Generate HTML Report
+    raw: ansible-cmdb /tmp/report/ > /tmp/report.html 2>/dev/null
+
+  - name: Generate CSV Report
+    raw: ansible-cmdb -t csv /tmp/report/ > /tmp/report.csv 2>/dev/null
+
+  - name: Email the Reports
+    raw: echo "See attached reports" | mailx -s "Ansible Report" -a /tmp/report.html -a /tmp/report.csv "{{ EMAIL }}"
