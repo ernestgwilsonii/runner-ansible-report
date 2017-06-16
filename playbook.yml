@@ -20,9 +20,21 @@
 
 
 # Temp debug
-  # - name: grep runner /etc/passwd
-  #   raw: grep runner /etc/passwd
-  #   ignore_errors: yes
+  - name: which tar
+    raw: which tar
+    ignore_errors: yes
+
+  - name: which gzip
+    raw: which gzip
+    ignore_errors: yes
+
+  - name: which wget
+    raw: which wget
+    ignore_errors: yes
+
+  - name: which curl
+    raw: which curl
+    ignore_errors: yes
 
 
 # file - Sets attributes of files and directories
@@ -48,11 +60,11 @@
 # REF: http://docs.ansible.com/ansible/unarchive_module.html
 ############################################################
 
-  - name: Install ansiblecmdb
-    unarchive:
-      src: https://github.com/ernestgwilsonii/runner-ansible-report/raw/master/ansiblecmdb.tar.gz
-      dest: /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb
-      copy: no
+  # - name: Install ansiblecmdb
+  #   unarchive:
+  #     src: https://github.com/ernestgwilsonii/runner-ansible-report/raw/master/ansiblecmdb.tar.gz
+  #     dest: /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb
+  #     copy: no
 
 
 # Execute command(s)
@@ -62,14 +74,14 @@
   # - name: Install ansible-cmdb https://github.com/fboender/ansible-cmdb
   #   command: pip install --install-option="--prefix=/home/runner" ansible-cmdb
 
-  - name: Generate inventory data
-    command: ansible -m setup --tree /tmp/report/ all    
+  # - name: Generate inventory data
+  #   command: ansible -m setup --tree /tmp/report/ all    
 
-  - name: Generate HTML Report
-    raw: ansible-cmdb /tmp/report/ > /tmp/report.html 2>/dev/null
+  # - name: Generate HTML Report
+  #   raw: ansible-cmdb /tmp/report/ > /tmp/report.html 2>/dev/null
 
-  - name: Generate CSV Report
-    raw: ansible-cmdb -t csv /tmp/report/ > /tmp/report.csv 2>/dev/null
+  # - name: Generate CSV Report
+  #   raw: ansible-cmdb -t csv /tmp/report/ > /tmp/report.csv 2>/dev/null
 
   # - name: Email the Reports
   #   raw: echo "See attached reports" | mailx -s "Ansible Report" -a /tmp/report.html -a /tmp/report.csv "{{ EMAIL }}"
