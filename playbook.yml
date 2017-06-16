@@ -20,14 +20,13 @@
 
 
 # Temp debug
-  - name: echo $SHELL
-    raw: echo $SHELL
-
-  - name: grep runner /etct/passwd
-    raw: grep runner /etct/passwd
+  - name: grep runner /etc/passwd
+    raw: grep runner /etc/passwd
+    ignore_errors: yes
 
   - name: which mailx
     raw: which mailx
+    ignore_errors: yes
 
 
 # Install yum packages (listed in alphabetical order)
