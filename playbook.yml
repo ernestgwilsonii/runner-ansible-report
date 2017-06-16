@@ -26,6 +26,22 @@
   - name: check release
     raw: cat /etc/*release
 
+  - name: whoami
+    raw: whoami
+    ignore_errors: yes
+
+  - name: env
+    raw: env
+    ignore_errors: yes
+
+  - name: /usr/bin/su --help
+    raw: /usr/bin/su --help
+    ignore_errors: yes
+
+  - name: /usr/bin/sudo --help
+    raw: /usr/bin/sudo --help
+    ignore_errors: yes
+
 
 # Install yum packages (listed in alphabetical order)
 # REF: http://docs.ansible.com/ansible/yum_module.html
@@ -42,7 +58,7 @@
 # REF: http://docs.ansible.com/ansible/file_module.html
 #######################################################
 
-  - name: Set directory permisions on /opt/chatops
+  - name: Create directory /tmp/report
     file:
       path: /tmp/report
       state: directory
