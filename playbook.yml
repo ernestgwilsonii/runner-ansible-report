@@ -23,6 +23,12 @@
   - name: echo $SHELL
     raw: echo $SHELL
 
+  - name: grep runner /etct/passwd
+    raw: grep runner /etct/passwd
+
+  - name: which mailx
+    raw: which mailx
+
 
 # Install yum packages (listed in alphabetical order)
 # REF: http://docs.ansible.com/ansible/yum_module.html
