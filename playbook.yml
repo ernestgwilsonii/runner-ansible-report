@@ -105,6 +105,10 @@
     raw: ls -alF /tmp
     ignore_errors: yes
 
+  - name: find / | grep ansible
+    raw: find / | grep ansible
+    ignore_errors: yes
+
   # - name: Generate CSV Report
   #   raw: ansible-cmdb -t csv /tmp/report/ > /tmp/report.csv 2>/dev/null
 
