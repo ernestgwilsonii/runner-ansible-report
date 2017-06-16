@@ -20,13 +20,9 @@
 
 
 # Temp debug
-  - name: grep runner /etc/passwd
-    raw: grep runner /etc/passwd
-    ignore_errors: yes
-
-  - name: which mailx
-    raw: which mailx
-    ignore_errors: yes
+  # - name: grep runner /etc/passwd
+  #   raw: grep runner /etc/passwd
+  #   ignore_errors: yes
 
 
 # Install yum packages (listed in alphabetical order)
@@ -56,7 +52,7 @@
 ##########################################################
 
   - name: Install ansible-cmdb https://github.com/fboender/ansible-cmdb
-    command: pip install --install-option="--prefix=/home/runner/.local/lib/python2.7" ansible-cmdb
+    command: pip install --install-option="--prefix=/home/runner/.local/lib" ansible-cmdb
 
   # - name: Generate inventory data
   #   command: ansible -m setup --tree /tmp/report/ all    
