@@ -25,6 +25,17 @@
   #   ignore_errors: yes
 
 
+# unarchive - Unpacks an archive after (optionally) copying it from the local machine
+# REF: http://docs.ansible.com/ansible/unarchive_module.html
+############################################################
+
+  - name: Install Go
+    unarchive:
+      src: https://storage.googleapis.com/golang/go1.6.3.linux-amd64.tar.gz
+      dest: /usr/local
+      copy: no
+
+
 # Install yum packages (listed in alphabetical order)
 # REF: http://docs.ansible.com/ansible/yum_module.html
 ######################################################
