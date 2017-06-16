@@ -26,9 +26,6 @@
   - name: check release
     raw: cat /etc/*release
 
-  - name: sudo yum -y install mailx
-    raw: sudo yum -y install mailx
-
 
 # Install yum packages (listed in alphabetical order)
 # REF: http://docs.ansible.com/ansible/yum_module.html
@@ -57,16 +54,16 @@
 ##########################################################
 
   - name: Install ansible-cmdb https://github.com/fboender/ansible-cmdb
-    command: sudo pip install ansible-cmdb
+    command: pip install ansible-cmdb
 
   - name: Generate inventory data
-    command: sudo ansible -m setup --tree /tmp/report/ all    
+    command: ansible -m setup --tree /tmp/report/ all    
 
   - name: Generate HTML Report
-    raw: sudo ansible-cmdb /tmp/report/ > /tmp/report.html 2>/dev/null
+    raw: ansible-cmdb /tmp/report/ > /tmp/report.html 2>/dev/null
 
   - name: Generate CSV Report
-    raw: sudo ansible-cmdb -t csv /tmp/report/ > /tmp/report.csv 2>/dev/null
+    raw: ansible-cmdb -t csv /tmp/report/ > /tmp/report.csv 2>/dev/null
 
   - name: Email the Reports
     raw: echo "See attached reports" | mailx -s "Ansible Report" -a /tmp/report.html -a /tmp/report.csv "{{ EMAIL }}"
