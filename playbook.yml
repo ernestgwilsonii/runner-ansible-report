@@ -31,14 +31,6 @@
       owner: runner
       group: runner
 
-  - name: Create directory /tmp/report
-    file:
-      path: /tmp/report
-      state: directory
-      mode: 0755
-      owner: runner
-      group: runner
-
 
 # Temp debug
   - name: curl https://raw.githubusercontent.com/ernestgwilsonii/runner-ansible-report/master/ansiblecmdb/__init__.py --output /home/runner/.local/lib/python2.7/site-packages/ansiblecmdb/__init__.py
@@ -98,15 +90,15 @@
 ##########################################################
 
   - name: Generate inventory data
-    command: ansible -m setup --tree /tmp/report/ all    
+    command: ansible -m setup --tree /tmp/report/ all
     ignore_errors: yes
 
   - name: ls -alF /tmp/report
     raw: ls -alF /tmp/report
     ignore_errors: yes
 
-  # - name: Generate HTML Report
-  #   raw: ansible-cmdb /tmp/report/ > /tmp/report.html 2>/dev/null
+  - name: Generate HTML Report
+    raw: ansible-cmdb /tmp/report/ > /tmp/report.html 2>/dev/null
 
   # - name: Generate CSV Report
   #   raw: ansible-cmdb -t csv /tmp/report/ > /tmp/report.csv 2>/dev/null
