@@ -56,7 +56,7 @@
 ##########################################################
 
   - name: Install ansible-cmdb https://github.com/fboender/ansible-cmdb
-    command: pip install --install-option="--prefix=/home/runner/.local/lib/python2.7/site-packages" ansible-cmdb
+    command: pip install --install-option="--prefix=/home/runner/.local/lib/python2.7" ansible-cmdb
 
   - name: Generate inventory data
     command: ansible -m setup --tree /tmp/report/ all    
